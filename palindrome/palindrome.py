@@ -1,4 +1,4 @@
-# Compare string with itself reversed
+# Comparing string with itself reversed
 def is_palindrome_1(s):
     if s == s[::-1]:
         return True
