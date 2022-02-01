@@ -14,9 +14,8 @@ def is_palindrome_2(s):
     else:
         return False
 
-
 # Human readable output
-def output(func, strs):
+def hr_output(func, strs):
     print(f'\n---Function "{func.__name__}" output---\n')
     for s in strs:
         neg = ' not'
@@ -27,6 +26,6 @@ def output(func, strs):
 with open('palindrome/test_strings.txt') as test_file:
     strings = test_file.read().split('\n')
 
-output(is_palindrome_1, strings)
-output(is_palindrome_2, strings)
+hr_output(is_palindrome_1, strings)
+hr_output(is_palindrome_2, strings)
 
