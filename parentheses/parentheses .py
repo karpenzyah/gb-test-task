@@ -1,38 +1,37 @@
-def check1(s):
-    cnt_o = 0
-    cnt_c = 0
-    cnt = 0
-    for c in s:
-        if c == '(':
-            cnt_o = 1
-        elif c == ')':
-            cnt_c = 1
-        if cnt_c+cnt_o == 1:
-            cnt += 1
-    print(cnt, cnt_o, cnt_c)
-    if cnt>2:
-        return False
-    else:
-        return True
-
-
-    # if cnt == 0 and s[0] == '(':
-    #     return True
-    # else:
-    #     return False
-    #
-
 #  Recursive pairs deleting
-def check2(s):
+def check1(s):
     if s.__len__() > 2 and s[0] == '(':
-        s = s.replace('(','',1)
-        s = s.replace(')','',1)
-        print(s)
-        return check2(s)
+        s = s.replace('(', '', 1)
+        s = s.replace(')', '', 1)
+        return check1(s)
     elif s == '()':
         return True
     else:
         return False
+
+
+def check2(s):
+    mid = int(len(s)/2)
+    o_l = s.count('(', 0, mid)
+    c_l = s.count(')', 0, mid)
+    c_r = s.count(')', mid, len(s))
+    if (len(s) % 2) != 0 or s[0] == ')' or s[len(s)-1] == '(':
+        return False
+    elif o_l == c_r and o_l >= c_l:
+        return True
+    else:
+        return False
+
+
+#  Repetitive pairs deleting
+def check3(s):
+    while len(s) > 0:
+        i = s.find('()')
+        if i != -1:
+            s = s[:i]+s[i+2:]
+        else:
+            return False
+    return True
 
 
 # Human-readable output
@@ -48,6 +47,7 @@ with open('test_strings.txt') as test_file:
     strings = test_file.read().split('\n')
     strings.remove('')
 
+
+# hr_output(check1, strings)
 # hr_output(check2, strings)
-hr_output(check1, strings)
-# check1(strings[2])
+hr_output(check3, strings)

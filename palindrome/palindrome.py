@@ -5,7 +5,8 @@ def is_palindrome_1(s):
     else:
         return False
 
-# Recursive deleting edges
+
+# Recursive dropping endings
 def is_palindrome_2(s):
     if s == '':
         return True
@@ -13,6 +14,11 @@ def is_palindrome_2(s):
         return is_palindrome_2(s[1:len(s)-1])
     else:
         return False
+
+
+def is_palindrome_3(s):
+
+
 
 # Human readable output
 def hr_output(func, strs):
