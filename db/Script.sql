@@ -45,8 +45,25 @@ SELECT DISTINCT name,
 	
 	
 ----------------------------III------------------------------------	
-	
-SELECT 
+SELECT *,
+	CASE 
+		WHEN abs_u_time = 0 or abs_u_time > 1800 THEN click_time 
+		ELSE 0
+	END session_start_time,
+	CASE 
+		WHEN abs_u_time > 0 and abs_u_time < 1800 THEN click_time 
+		ELSE 0
+	END session_end_time
+	FROM (
+SELECT *,
+	u_time - MIN(u_time) OVER(PARTITION BY user_id, http_id) AS abs_u_time 
+	FROM (
+		SELECT *,
+			STRFTIME('%s', click_time) AS u_time
+			FROM clicks
+			ORDER BY user_id, http_id
+	)
+)
 	
 	
 	
