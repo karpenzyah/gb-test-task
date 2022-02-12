@@ -16,11 +16,16 @@ def is_palindrome_2(s):
         return False
 
 
+# Comparing endings
 def is_palindrome_3(s):
+    ln = len(s)
+    for i in range(ln//2):
+        if s[i] != s[ln-i-1]:
+            return False
+    return True
 
 
-
-# Human readable output
+# Human-readable output
 def hr_output(func, strs):
     print(f'\n---Function "{func.__name__}" output---\n')
     for s in strs:
@@ -31,7 +36,8 @@ def hr_output(func, strs):
 
 with open('palindrome/test_strings.txt') as test_file:
     strings = test_file.read().split('\n')
+    strings.remove('')
 
 hr_output(is_palindrome_1, strings)
 hr_output(is_palindrome_2, strings)
-
+hr_output(is_palindrome_3, strings)

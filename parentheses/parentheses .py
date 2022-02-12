@@ -10,6 +10,7 @@ def check1(s):
         return False
 
 
+# Comparing open and close parenthesis quantity in two symmetrical string halves
 def check2(s):
     mid = int(len(s)/2)
     o_l = s.count('(', 0, mid)
@@ -23,7 +24,7 @@ def check2(s):
         return False
 
 
-#  Repetitive pairs deleting
+#  Repetitive deleting of parenthesis pairs
 def check3(s):
     while len(s) > 0:
         i = s.find('()')
@@ -48,6 +49,6 @@ with open('test_strings.txt') as test_file:
     strings.remove('')
 
 
-# hr_output(check1, strings)
-# hr_output(check2, strings)
+hr_output(check1, strings)
+hr_output(check2, strings)
 hr_output(check3, strings)
